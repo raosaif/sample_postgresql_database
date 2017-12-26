@@ -1,14 +1,8 @@
-import psycopg2
+from postgresql_api import *
 
-connect_str = "dbname='imdb' user='user' host='localhost' " + \
-                  "password='password'"
-    # use our connection values to establish a connection
 
-# Connect to an existing database
-conn = psycopg2.connect(connect_str)
-
-# Open a cursor to perform database operations
-cur = conn.cursor()
+api_handle = postgresql_api()
+cur = api_handle.connect_db()
 
 cur.execute('''CREATE OR REPLACE FUNCTION genres_movie(input_genre varchar) 
 RETURNS TABLE (
@@ -38,7 +32,7 @@ WHERE
 END; $$
 LANGUAGE 'plpgsql';''')
 
-conn.commit()
+api_handle.commit_api()
 
 cur.callproc('genres_movie', ('Comedy',))
 	# process the result set
@@ -49,5 +43,5 @@ while row is not None:
 	row = cur.fetchone()
 
 print('Total Rows: ',cur.rowcount)
-cur.close()
-conn.close()
+
+api_handle.close_api()
