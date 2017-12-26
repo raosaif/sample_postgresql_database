@@ -9,6 +9,8 @@ We will use the imdb database for demonstrating the features of PostgreSQL. This
 
 ## 2- Layout
 
+![](https://github.com/raosaif/sample_postgresql_database/blob/master/images/detailed_relationship_layout.jpg)
+
 ### 2.1- Relationship Layout
 
 ![](https://github.com/raosaif/sample_postgresql_database/blob/master/images/relationship_layout.jpg)
