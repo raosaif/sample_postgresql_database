@@ -9,6 +9,8 @@ We will use the imdb database for demonstrating the features of PostgreSQL. This
 
 ## 2- Layout
 
+![](https://github.com/raosaif/sample_postgresql_database/blob/master/images/detailed_relationship_layout.jpg)
+
 ### 2.1- Relationship Layout
 
 ![](https://github.com/raosaif/sample_postgresql_database/blob/master/images/relationship_layout.jpg)
@@ -70,17 +72,26 @@ There are multiple ways of loading imdb database
 
 ### 4.2.1- from_imdb folder
 Navigate to from_imdb directory and run the below command. You will need [beautiful soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/), [urrlib](https://urllib3.readthedocs.io/en/latest/), and [psycopg2](http://initd.org/psycopg/docs/) for this operation. 
+
+#### 4.2.1.1- Pre-Requisites
+You need to input username, password, host, and database name in the imdb_upload_data.py file.
+
+![](https://github.com/raosaif/sample_postgresql_database/blob/master/images/from_imdb_detail.jpg)
 ```
 python3 imdb_upload_data.py
 ```
 ### 4.2.2- from_csv
 
-Navigate to from_csv directory and run the below command. 
+Navigate to from_csv directory and run the below command. from_csv parse the csv files available under the csv_files and upload the data to the db. You will need [psycopg2](http://initd.org/psycopg/docs/) for this operation.
+
+#### 4.2.2.1- Pre-Requisites
+You need to input username, password, host, and database name in the imdb_upload_data.py file.
+
+![](https://github.com/raosaif/sample_postgresql_database/blob/master/images/from_imdb_detail.jpg)
 
 ```
 python3 uploading_from_csv.py
 ```
-from_csv parse the csv files available under the csv_files and upload the data to the db. You will need [psycopg2](http://initd.org/psycopg/docs/) for this operation.
 
 ### 4.2.3- via pg_restore command. 
 
