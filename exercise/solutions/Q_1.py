@@ -1,7 +1,7 @@
 import psycopg2
 
-connect_str = "dbname='imdb_restore' user='rao' host='localhost' " + \
-                  "password='raoali'"
+connect_str = "dbname='imdb' user='user' host='localhost' " + \
+                  "password='password'"
     # use our connection values to establish a connection
 
 # Connect to an existing database
