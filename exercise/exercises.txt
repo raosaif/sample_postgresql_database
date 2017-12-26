@@ -1,0 +1,2 @@
+Q_1: Create a function where user enters the content_id and get the details about the respective movie.
+Q_2: 
