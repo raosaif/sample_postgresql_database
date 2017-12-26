@@ -1,5 +1,7 @@
 # sample_postgresql_database
 
+## 1- Introduction
+
 Welcome! This PostgreSQL repository will help you to understand PostgreSQL quickly with examples and sample database. 
 in this repository's database (imdb), you will be introduced to a PostgreSQL sample database that you can use for learning and practice PostgreSQL.
 
@@ -21,7 +23,7 @@ We will use the imdb database for demonstrating the features of PostgreSQL. This
 
 For detail overview of the tables, please navigate to [Schema](https://github.com/raosaif/sample_postgresql_database/tree/master/Schema) folder and click the index.html file. 
 
-## 3- Introduction
+## 3- Overview
 
 ### 3.1- There are 11 tables in the imdb database:
 
