@@ -19,7 +19,7 @@ FROM contents
 INNER JOIN content_genres ON content_genres.content_id = contents.content_id 
 WHERE 
 	content_genres.genre_id = (
-			select .
+			select 
 				genres.genre_id 
 			from genres 
 			where genres.name ILIKE input_genre);
