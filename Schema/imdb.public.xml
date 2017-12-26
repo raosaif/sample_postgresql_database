@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="imdb" schema="public" type="PostgreSQL - 9.5.2">
+   <tables>
+      <table name="actors" numRows="5995" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('actors_actor_id_seq'::regclass)" digits="0" id="0" name="actor_id" nullable="false" remarks="" size="10" type="serial">
+            <child column="actor_id" foreignKey="content_actors_actor_id_fkey" implied="false" onDeleteCascade="false" table="content_actors"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="false" remarks="" size="250" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="2" name="last_updated" nullable="false" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="actor_id" sequenceNumberInPK="1"/>
+         <index name="actors_pkey" unique="true">
+            <column ascending="true" name="actor_id"/>
+         </index>
+      </table>
+      <table name="content_actors" numRows="7139" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="actor_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="actor_id" foreignKey="content_actors_actor_id_fkey" implied="false" onDeleteCascade="false" table="actors"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="content_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="content_id" foreignKey="content_actors_content_id_fkey" implied="false" onDeleteCascade="false" table="contents"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="2" name="last_updated" nullable="true" remarks="" size="29" type="timestamp"/>
+      </table>
+      <table name="content_directors" numRows="1062" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="director_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="director_id" foreignKey="content_directors_director_id_fkey" implied="false" onDeleteCascade="false" table="directors"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="content_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="content_id" foreignKey="content_directors_content_id_fkey" implied="false" onDeleteCascade="false" table="contents"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="2" name="last_updated" nullable="true" remarks="" size="29" type="timestamp"/>
+      </table>
+      <table name="content_genres" numRows="1206" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="genre_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="genre_id" foreignKey="content_genres_genre_id_fkey" implied="false" onDeleteCascade="false" table="genres"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="content_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="content_id" foreignKey="content_genres_content_id_fkey" implied="false" onDeleteCascade="false" table="contents"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="2" name="last_updated" nullable="true" remarks="" size="29" type="timestamp"/>
+      </table>
+      <table name="content_ratings" numRows="11" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('content_ratings_content_rating_id_seq'::regclass)" digits="0" id="0" name="content_rating_id" nullable="false" remarks="" size="10" type="serial">
+            <child column="content_rating" foreignKey="contents_content_rating_fkey" implied="false" onDeleteCascade="false" table="contents"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="content_type_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="content_type_id" foreignKey="content_ratings_content_type_id_fkey" implied="false" onDeleteCascade="false" table="content_types"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="name" nullable="false" remarks="" size="250" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="6" id="4" name="last_updated" nullable="true" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="content_rating_id" sequenceNumberInPK="1"/>
+         <index name="content_ratings_pkey" unique="true">
+            <column ascending="true" name="content_rating_id"/>
+         </index>
+         <index name="content_ratings_name_key" unique="true">
+            <column ascending="true" name="name"/>
+         </index>
+      </table>
+      <table name="content_types" numRows="5" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('content_types_content_type_id_seq'::regclass)" digits="0" id="0" name="content_type_id" nullable="false" remarks="" size="10" type="serial">
+            <child column="content_type_id" foreignKey="content_ratings_content_type_id_fkey" implied="false" onDeleteCascade="false" table="content_ratings"/>
+            <child column="content_type" foreignKey="contents_content_type_fkey" implied="false" onDeleteCascade="false" table="contents"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="false" remarks="" size="250" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="2" name="last_updated" nullable="true" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="content_type_id" sequenceNumberInPK="1"/>
+         <index name="content_types_pkey" unique="true">
+            <column ascending="true" name="content_type_id"/>
+         </index>
+         <index name="content_types_name_key" unique="true">
+            <column ascending="true" name="name"/>
+         </index>
+      </table>
+      <table name="contents" numRows="500" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('contents_content_id_seq'::regclass)" digits="0" id="0" name="content_id" nullable="false" remarks="" size="10" type="serial">
+            <child column="content_id" foreignKey="content_actors_content_id_fkey" implied="false" onDeleteCascade="false" table="content_actors"/>
+            <child column="content_id" foreignKey="content_directors_content_id_fkey" implied="false" onDeleteCascade="false" table="content_directors"/>
+            <child column="content_id" foreignKey="content_genres_content_id_fkey" implied="false" onDeleteCascade="false" table="content_genres"/>
+            <child column="content_id" foreignKey="episode_list_content_id_fkey" implied="false" onDeleteCascade="false" table="episode_list"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="title" nullable="false" remarks="" size="2147483647" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="total_seasons" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="4" name="imdb_score" nullable="false" remarks="" size="131089" type="numeric"/>
+         <column autoUpdated="false" digits="0" id="5" name="release_dates" nullable="false" remarks="" size="250" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="6" name="play_time" nullable="false" remarks="" size="250" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="7" name="content_rating" nullable="true" remarks="" size="10" type="int4">
+            <parent column="content_rating_id" foreignKey="contents_content_rating_fkey" implied="false" onDeleteCascade="false" table="content_ratings"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="8" name="total_episodes" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="9" name="content_type" nullable="false" remarks="" size="10" type="int4">
+            <parent column="content_type_id" foreignKey="contents_content_type_fkey" implied="false" onDeleteCascade="false" table="content_types"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="10" name="imdb_link" nullable="false" remarks="" size="250" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="11" name="last_updated" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="12" name="imdb_score_votes" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="'{}'::json" digits="0" id="13" name="rating_details" nullable="false" remarks="" size="2147483647" type="json"/>
+         <column autoUpdated="false" digits="0" id="14" name="languages" nullable="false" remarks="" size="50" type="_varchar"/>
+         <primaryKey column="content_id" sequenceNumberInPK="1"/>
+         <index name="contents_pkey" unique="true">
+            <column ascending="true" name="content_id"/>
+         </index>
+         <index name="contents_imdb_link_key" unique="true">
+            <column ascending="true" name="imdb_link"/>
+         </index>
+      </table>
+      <table name="directors" numRows="750" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('directors_director_id_seq'::regclass)" digits="0" id="0" name="director_id" nullable="false" remarks="" size="10" type="serial">
+            <child column="director_id" foreignKey="content_directors_director_id_fkey" implied="false" onDeleteCascade="false" table="content_directors"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="false" remarks="" size="250" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="2" name="last_updated" nullable="false" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="director_id" sequenceNumberInPK="1"/>
+         <index name="directors_pkey" unique="true">
+            <column ascending="true" name="director_id"/>
+         </index>
+      </table>
+      <table name="episode_list" numRows="18321" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('episode_list_episode_id_seq'::regclass)" digits="0" id="0" name="episode_id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="season_num" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="2" name="episode_name" nullable="false" remarks="" size="250" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="content_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="content_id" foreignKey="episode_list_content_id_fkey" implied="false" onDeleteCascade="false" table="contents"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="release_date" nullable="false" remarks="" size="250" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="episode_rating" nullable="false" remarks="" size="131089" type="numeric"/>
+         <column autoUpdated="false" digits="0" id="6" name="episode_num" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="7" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="6" id="8" name="last_updated" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="9" name="episode_imdb_link" nullable="false" remarks="" size="250" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="10" name="episode_score_votes" nullable="false" remarks="" size="10" type="int4"/>
+         <primaryKey column="episode_id" sequenceNumberInPK="1"/>
+         <index name="episode_list_pkey" unique="true">
+            <column ascending="true" name="episode_id"/>
+         </index>
+         <index name="episode_list_episode_imdb_link_key" unique="true">
+            <column ascending="true" name="episode_imdb_link"/>
+         </index>
+      </table>
+      <table name="genres" numRows="22" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('genres_genre_id_seq'::regclass)" digits="0" id="0" name="genre_id" nullable="false" remarks="" size="10" type="serial">
+            <child column="genre_id" foreignKey="content_genres_genre_id_fkey" implied="false" onDeleteCascade="false" table="content_genres"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="false" remarks="" size="250" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="2" name="last_updated" nullable="false" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="genre_id" sequenceNumberInPK="1"/>
+         <index name="genres_pkey" unique="true">
+            <column ascending="true" name="genre_id"/>
+         </index>
+         <index name="genres_name_key" unique="true">
+            <column ascending="true" name="name"/>
+         </index>
+      </table>
+      <table name="languages" numRows="63" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('languages_language_id_seq'::regclass)" digits="0" id="0" name="language_id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="false" remarks="" size="250" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="2" name="last_updated" nullable="false" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="language_id" sequenceNumberInPK="1"/>
+         <index name="languages_pkey" unique="true">
+            <column ascending="true" name="language_id"/>
+         </index>
+         <index name="languages_name_key" unique="true">
+            <column ascending="true" name="name"/>
+         </index>
+      </table>
+   </tables>
+</database>

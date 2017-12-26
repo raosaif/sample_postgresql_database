@@ -1,0 +1,11 @@
+content_types
+actors
+directors
+genres
+content_ratings
+contents
+episode_list
+content_actors
+content_directors
+content_genres
+languages
