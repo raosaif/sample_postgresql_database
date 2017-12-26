@@ -38,12 +38,44 @@ For detail overview of the tables, please navigate to 'Schema' folder and click 
 
 11- languages - stores the information about the languages. (independent table)
 
-# 1- Installation
+# Installation
 
-There are three ways of restoring the database
+## Creating a new IMDB database
 
-##1- from imdb
-Navigate to from_imdb directory and run the below command. You will need ![beautiful soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) and ![urrlib](https://urllib3.readthedocs.io/en/latest/) for this operation. 
+You need to [create a new database](http://www.postgresqltutorial.com/postgresql-create-database/) in the PostgreSQL database server before loading database schema and data into the database.
+
+First, launch the psql tool.
+
+Second, enter account’s information to login to the PostgreSQL database server.
+
+Third, enter the following statement to create a new dvdrental database.
+
 ```
-python3 imdb_upload_data
+CREATE DATABASE imdb;
 ```
+PostgreSQL will create a new database named dvdrental.
+
+There are multiple ways of loading imdb database
+
+## 1- from_imdb folder
+Navigate to from_imdb directory and run the below command. You will need [beautiful soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/), [urrlib](https://urllib3.readthedocs.io/en/latest/), and [psycopg2](http://initd.org/psycopg/docs/) for this operation. 
+```
+python3 imdb_upload_data.py
+```
+## 2- from_csv
+
+Navigate to from_csv directory and run the below command. 
+
+```
+python3 uploading_from_csv.py
+```
+from_csv parse the csv files available under the csv_files and upload the data to the db. You will need [psycopg2](http://initd.org/psycopg/docs/) for this operation.
+
+## 3- via pg_restore command. 
+
+Navigate to from_pg_restore directory and run the command 
+
+```
+pg_restore -u user -n public -d databasename '/path/to/imdb.tar' 
+```
+
