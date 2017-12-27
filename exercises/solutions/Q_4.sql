@@ -1,0 +1,1 @@
+SELECT* from contents where 'Spanish' = ANY(contents.languages);
