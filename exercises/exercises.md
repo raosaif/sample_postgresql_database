@@ -7,3 +7,12 @@ Create a function where user enters the content_id and get the details about the
 Create a function where user enters a specific genres and get all the movies for that specific genres.
 #### Input/s:  Genre (e.g. 'Comedy')
 #### Output/s: Content_id, title, genre_id
+
+## Q_3_1:
+Display all the movies with with content rating 'TV-MA'. (with sub query)
+
+## Q_3_2:
+Display all the movies with with content rating 'TV-MA'. (without sub query)
+
+
+
